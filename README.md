@@ -1,2 +1,1 @@
-# DeepQTest: Testing Autonomous Driving Systems with
-Reinforcement Learning and Real-world Weather Data
+# DeepQTest: Testing Autonomous Driving Systems with Reinforcement Learning and Real-world Weather Data
