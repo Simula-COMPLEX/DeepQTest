@@ -7,11 +7,8 @@
 
 import xml.dom.minidom
 
-# doc = xml.dom.minidom.Document()
-# root = doc.createElement('SVLScenario')
 
-
-def initialization(datatime='2021-7-8', timestamp='1625673600', weatherdataset='./Nanjing_2021-7-8.json'):
+def initialization(datatime='2021-7-8', timestamp='1625673600', weatherdataset='./SanFrancisco_2021-7-8.json'):
     doc = xml.dom.minidom.Document()
     root = doc.createElement('SVLScenario')
 

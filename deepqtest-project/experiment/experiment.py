@@ -39,11 +39,11 @@ judge = True
 
 def greedy_Exp(road, effect, effect_n, reward_type):
     experiment_tag = 'Greedy_Experiment({})_{}Reward_{}'.format(road['description'], reward_type, effect_n)
-    filename = './TestingData/formal_experiment_data/Greedy/{}.csv'.format(experiment_tag)
+    filename = './testingData/formal_experiment_data/Greedy/{}.csv'.format(experiment_tag)
     global judge
     try:
         episode_start = 0
-        episode_end = episode_start + 1
+        episode_end = 19
         if episode_start == 0:
             df_title.to_csv(filename, mode='w', header=False, index=False)
 
@@ -55,13 +55,10 @@ def greedy_Exp(road, effect, effect_n, reward_type):
         st = 0
 
         reloadEnv(time=effect['time'], date=effect['date'], road_start=road['start'],
-                  destination=road['destination'], effect_name="Greedy_" + effect_n, episode=episode_start)
-        requests.post("http://127.0.0.1:5000/simplexity-lab/lgsvl-api/SaveState?ID={}".format(st))
+                  destination=road['destination'], weather_name="Greedy_" + effect_n, episode=episode_start)
+        requests.post("http://127.0.0.1:5000/deepqtest/lgsvl-api/savestate?ID={}".format(st))
 
         total_reward = 0.0
-        break_ = False
-        reward, tcjd, reward_info_, done = 0, [], {}, False
-        collision_type = 'None'
         print('------------------------------------------------------')
         print('+                    Episode: ', episode_start, '                   +')
         print('------------------------------------------------------')
@@ -71,14 +68,14 @@ def greedy_Exp(road, effect, effect_n, reward_type):
             new_api = torch.tensor(0)
             for api in range(0, N_ACTION):  # N_ACTION
                 action = torch.tensor(api)
-                requests.post("http://127.0.0.1:5000/simplexity-lab/lgsvl-api/save-scenario?save={}".format('False'))
+                requests.post("http://127.0.0.1:5000/deepqtest/lgsvl-api/save-scenario?save={}".format('False'))
                 image_, bird_, speed_, timestamp_, reward, tcjd, reward_info_, done = step(action, env, action_space,
                                                                                            experiment_tag)  # tcjd: [TTC, collision_speed, JERK, distance]
 
                 if tcjd[3] < metric_temp:  # Jerk Reward [2] >
                     metric_temp = tcjd[3]
                     new_api = action
-                requests.post("http://127.0.0.1:5000/simplexity-lab/lgsvl-api/RollBack?ID={}".format(st))
+                requests.post("http://127.0.0.1:5000/deepqtest/lgsvl-api/rollback?ID={}".format(st))
 
             """
             Searching finished, starting to run new_api
@@ -86,7 +83,7 @@ def greedy_Exp(road, effect, effect_n, reward_type):
             image, bird, speed, timestamp = env.observe_multimodal(experiment_tag)
             # image, bird, speed, timestamp = None, None, torch.tensor(-1), None
             ss.send(json.dumps(['start']).encode('utf-8'))
-            requests.post("http://127.0.0.1:5000/simplexity-lab/lgsvl-api/save-scenario?save={}".format('True'))
+            requests.post("http://127.0.0.1:5000/deepqtest/lgsvl-api/save-scenario?save={}".format('True'))
 
             image_, bird_, speed_, timestamp_, reward, tcjd, reward_info_, done = step(new_api, env, action_space,
                                                                                        experiment_tag)
@@ -123,7 +120,7 @@ def greedy_Exp(road, effect, effect_n, reward_type):
                     to_csv(filename, mode='a', header=False, index=False)
             st += 1
 
-            requests.post("http://127.0.0.1:5000/simplexity-lab/lgsvl-api/SaveState?ID={}".format(st))
+            requests.post("http://127.0.0.1:5000/deepqtest/lgsvl-api/savestate?ID={}".format(st))
 
             total_reward += reward
             if done:
@@ -141,15 +138,14 @@ def greedy_Exp(road, effect, effect_n, reward_type):
         import traceback
         print('error occurred, saving breakpoint #{}. Error details: {}'.format('episode_count', e))
         traceback.print_exc()
-        # save_model(dqn, episode_count, model_path, "Exception", save_memory=True)
         print('Saved.')
 
 
 def random_exp(road, effect, effect_n, reward_type):
-    EPISODE = 30
+    EPISODE = 20
     experiment_tag = 'Random_Experiment({})_{}Reward_{}'.format(road['description'], reward_type, effect_n)
 
-    filename = './TestingData/formal_experiment_data/Random/{}.csv'.format(experiment_tag)
+    filename = './testingData/formal_experiment_data/Random/{}.csv'.format(experiment_tag)
     episode_count = 0
 
     try:
@@ -168,7 +164,7 @@ def random_exp(road, effect, effect_n, reward_type):
             print('+                    Episode: ', i_episode, '                   +')
             print('------------------------------------------------------')
             reloadEnv(time=effect['time'], date=effect['date'], road_start=road['start'],
-                      destination=road['destination'], effect_name="Random_" + effect_n,
+                      destination=road['destination'], weather_name="Random_" + effect_n,
                       episode=i_episode, road_num=road['num'])
             image, bird, speed, timestamp = env.observe_multimodal(experiment_tag)
             total_reward = 0.0
@@ -224,38 +220,30 @@ def random_exp(road, effect, effect_n, reward_type):
                     print("Finished Episode {} with total reward {}".format(i_episode, total_reward))
                     break
 
-            # if step_done > 9000 and i_episode > 600:
-            #     break
-
     except Exception as e:
         import traceback
         print('error occurred, saving breakpoint #{}. Error details: {}'.format(episode_count, e))
         traceback.print_exc()
-        # save_model(dqn, episode_count, model_path, "Exception", save_memory=True)
         print('Saved.')
         exit(1)
 
 
 def dqn_exp(road, effect, effect_n, reward_type):
-    EPISODE = 30
+    EPISODE = 20
     experiment_tag = 'experiment({})_{}Reward_{}'.format(road['description'], reward_type, effect_n)
 
-    filename = './TestingData/formal_experiment_data/dqn/{}.csv'.format(experiment_tag)
-    model_path = "/home/chengjie/Chengjie/experiment/{}/Model".format(experiment_tag)
+    filename = './testingData/formal_experiment_data/dqn/{}.csv'.format(experiment_tag)
+    model_path = "../experiment/{}/Model".format(experiment_tag)
     print(model_path)
     dqn = DQN(IM_HEIGHT, IM_WIDTH, BIRD_HEIGHT, BIRD_WIDTH, N_ACTION)  # (160 376 300 300 194)
     episode_count = 0
 
     try:
-        episode_start = 10
-        model_ID = 599
+        episode_start = 0
+        model_ID = -1
         directory = "Trained"
-        load = load_model(dqn, model_ID, model_path, directory)  #
+        load_model(dqn, model_ID, model_path, directory)  #
 
-        # if save and not load:
-        # df_title.to_csv(filename, mode='w', header=False, index=False)
-
-        # effect = real_world_effect['Nanjing_2021-7-8-rain']
         initialization(time=effect['time'], date=effect['date'], city=effect['city'], road_start=road['start'],
                        destination=road['destination'], simulationtime=3)
         print('Set Observation period to ' + str(3) + ' second(s).')
@@ -269,17 +257,12 @@ def dqn_exp(road, effect, effect_n, reward_type):
             print('+                    Episode: ', i_episode, '                   +')
             print('------------------------------------------------------')
             reloadEnv(time=effect['time'], date=effect['date'], road_start=road['start'],
-                      destination=road['destination'], effect_name="DQN_" + effect_n,
+                      destination=road['destination'], weather_name="DQN_" + effect_n,
                       episode=i_episode, road_num=road['num'])
             image, bird, speed, timestamp = env.observe_multimodal(experiment_tag)
             total_reward = 0.0
 
-            # if (i_episode + 1) % 50 == 0 and (i_episode + 1) > 400:
-            #     print('saved model: ' + str(i_episode + 1))
-            #     save_model(dqn, i_episode, model_path, "Trained", save_memory=False)
-
             for st in count():
-                # s = time.time()
                 action, step_done = dqn.select_action(image.to(dqn.device), bird.to(dqn.device), speed.to(dqn.device))
                 ss.send(json.dumps(['start']).encode('utf-8'))
                 image_, bird_, speed_, timestamp_, reward, tcjd, reward_info_, done = step(action, env, action_space,
@@ -314,8 +297,6 @@ def dqn_exp(road, effect, effect_n, reward_type):
                     next_image, next_bird, next_speed = None, None, None
 
                 reward = torch.tensor([reward], device=dqn.device)
-                # dqn.memory.push(image, bird, speed, action.to(dqn.device), next_image, next_bird, next_speed,
-                #                 reward.to(dqn.device))
 
                 print('>>>>>>>>>>step: {}, action: {}, reward: {}, TTC_SAC_JERK_Distance: {}, done: {}.'.
                       format(st, action.item(), round(reward.item(), 3), tcjd, done))
@@ -336,7 +317,6 @@ def dqn_exp(road, effect, effect_n, reward_type):
         import traceback
         print('error occurred, saving breakpoint #{}. Error details: {}'.format(episode_count, e))
         traceback.print_exc()
-        # save_model(dqn, episode_count, model_path, "Exception", save_memory=True)
         print('Saved.')
         exit(1)
 
@@ -344,25 +324,13 @@ def dqn_exp(road, effect, effect_n, reward_type):
 if __name__ == '__main__':
     print('testing start at {}'.format(time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time()))))
 
-    # effects = ['Nanjing_2021-7-8-rain', 'Nanjing_2021-7-8-rain-night',
-    #            'SanFrancisco_2021-7-24-sunny', 'SanFrancisco_2021-7-24-sunny-night']
-    # effects = ['Nanjing_2021-7-8-rain-night',
-    #            'SanFrancisco_2021-7-24-sunny', 'SanFrancisco_2021-7-24-sunny-night']
-    effects = ['SanFrancisco_2021-7-24-sunny-night']
+    weathers = real_world_weather.keys()
 
     for ro in roads:
-        for effect_name in effects:
-            # for ro in roads:
-            # if ro in ['road4'] and effect_name in ['Nanjing_2021-7-8-rain-night',
-            #                                        'SanFrancisco_2021-7-24-sunny',
-            #                                        'SanFrancisco_2021-7-24-sunny-night']:
-            #     continue
-            # print(effect_name, 'on', ro)
+        for wea in weathers:
             start = time.time()
-            # dqn_exp(roads[ro], real_world_effect[effect_name], effect_name, 'TTC')
-
-            greedy_Exp(roads[ro], real_world_weather[effect_name], effect_name, 'Distance')
-            # random_exp(roads[ro], real_world_effect[effect_name], effect_name, 'TTC')
+            # dqn_exp(roads[ro], real_world_weather[wea], wea, 'TTC')
+            greedy_Exp(roads[ro], real_world_weather[wea], wea, 'Distance')
+            # random_exp(roads[ro], real_world_weather[wea], wea, 'TTC')
             end = time.time()
             print('testing time is {} h.'.format((end - start) / 60 / 60))
-            # break

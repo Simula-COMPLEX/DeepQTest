@@ -254,7 +254,7 @@ def get_effect_info():
     global WEATHER_NAME
     global EPISODE
     global ROAD
-    WEATHER_NAME = request.args.get('WEATHER_NAME')
+    WEATHER_NAME = request.args.get('weather_name')
     EPISODE = int(request.args.get('episode'))
     ROAD = request.args.get('road_n')
     print(WEATHER_NAME, EPISODE, ROAD)

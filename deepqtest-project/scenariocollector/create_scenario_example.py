@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 # @Time    : 2021/9/3 15:28
 # @Author  : Chengjie
-# @File    : npc_follow_waypoints.py
+# @File    : create_scenario_example.py
 
 # !/usr/bin/env python3
 #
@@ -17,7 +17,7 @@ import socket
 import sys
 from environs import Env
 import lgsvl
-from ScenarioCollector.createUtils import *
+from scenariocollector.createUtils import *
 
 print("Python API Quickstart #13: NPC following waypoints")
 env = Env()

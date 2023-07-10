@@ -6,17 +6,6 @@
 import json
 
 
-def read_real_weather(time_stamp):
-    real_weather = open('Nanjing_Weather_Used(7_8_Rain).json', 'r')
-    content = real_weather.read()
-    real_weather = json.loads(s=content)
-    humidity = real_weather[time_stamp]['main']['humidity']
-    clouds = real_weather[time_stamp]['clouds']['all']
-    weather_id = real_weather[time_stamp]['weather'][0]['id']
-    print(humidity, clouds, weather_id)
-    return humidity, clouds, weather_id
-
-
 def map_real_to_virtual(time_stamp, real_weather):
     weather_Map = open('./openweather-database/Weather_Map.json', 'r')
     content = weather_Map.read()

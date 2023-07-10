@@ -33,24 +33,20 @@ def calculate_reward(reward_info):
     """
     if 0 < TTC <= 7:
         TTC_Reward = -math.log(TTC / 7)
-    elif 7 < TTC < 100000:
-        TTC_Reward = -0.5
     else:
         TTC_Reward = -1
 
     """
     jerk reward used
     """
-    if JERK > 0.9:
+    if JERK > 5:
         JERK_Reward = math.exp((JERK - 0) / (0.9 - 0)) - 1
     else:
         JERK_Reward = -1  # 0.1
     """
     Dis reward used
     """
-    if distance == 0:
-        distance_Reward = 2
-    elif 0 < distance <= 10:
+    if 0 <= distance <= 10:
         distance_Reward = -math.log(distance / 10)
     else:
         distance_Reward = -1
@@ -88,17 +84,12 @@ def judge_not_moving_done():
 
 
 def step(actionID, env, action_space, experiment_stamp):
-    # print(action_space[str(actionID.item() + 1)]['API'])
     reward_info = env.step(action_space[str(actionID.item() + 1)]['API'])
-    # print(reward_info)
     action_reward, TCJD, _, _, _ = calculate_reward(reward_info)
-    # im, bi, sp, timestamp = env.observe_multimodal(experiment_stamp)
-    im, bi, sp, timestamp = None, None, None, None
+    im, bi, sp, timestamp = env.observe_multimodal(experiment_stamp)
+    # im, bi, sp, timestamp = None, None, None, None
 
     arrived = requests.get("http://127.0.0.1:5000/deepqtest/lgsvl-api/ego/ego-arrived").json()
-    # print(reward_info['collision_type'])
-    # print(arrived)
-    # print(judge_not_moving_done())
     if arrived == 'True' or reward_info['collision_type'] != 'None' or judge_not_moving_done():
         episode_done = True
     else:
@@ -107,7 +98,7 @@ def step(actionID, env, action_space, experiment_stamp):
     return im, bi, sp, timestamp, action_reward, TCJD, reward_info, episode_done
 
 
-def initialization(enable='True', simulationtime=3, date='2021-7-8', time='6:00:00', city='Nanjing', road_start='road1_start',
+def initialization(enable='True', simulationtime=3, date='2021-7-8', time='6:00:00', city='SanFrancisco', road_start='road1_start',
                    destination=(-300.34, 10.20, -14.54)):
 
     requests.post("http://127.0.0.1:5000/deepqtest/lgsvl-api/realistic-scenario-constrains?enable={}".format(
@@ -128,10 +119,10 @@ t = 0
 
 
 def reloadEnv(date='2021-7-8', time='6:00:00', road_start='road1_start', destination=(-300.34, 10.20, -14.54),
-              effect_name='Default', episode=0, road_num='1'):
+              weather_name='Default', episode=0, road_num='1'):
     global t
     requests.post("http://127.0.0.1:5000/deepqtest/lgsvl-api/real-effect-info/"
-                  "effect-episode?effect_name={}&episode={}&road_n={}".format(effect_name, str(episode), road_num))
+                  "weather-episode?weather_name={}&episode={}&road_n={}".format(weather_name, str(episode), road_num))
     requests.post("http://127.0.0.1:5000/deepqtest/lgsvl-api/load-scene?scene={}&road_start={}".format('SanFrancisco', road_start))
 
     requests.post("http://127.0.0.1:5000/deepqtest/lgsvl-api/set-datetime?date={}&time={}".format(date, time))

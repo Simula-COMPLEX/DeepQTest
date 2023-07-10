@@ -16,9 +16,7 @@ from dqn.replay_memory import ReplayMemory
 HyperParameter = dict(BATCH_SIZE=48, GAMMA=0.9, EPS_START=1, EPS_END=0.02, EPS_DECAY=6000, TARGET_UPDATE=100,
                       lr=1e-4, INITIAL_MEMORY=2000, MEMORY_SIZE=2000)
 
-# device = torch.device("cpu")
 device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
-# steps_done = 0
 print('training with {}'.format(device))
 
 
@@ -33,7 +31,7 @@ class Multi_Modal_Model(nn.Module):
 
         # CNN for the image feature extraction
         self.image_conv1 = nn.Conv2d(3, 32, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1))
-        self.image_bn1 = nn.BatchNorm2d(32)  # 在卷积神经网络的卷积层之后总会添加BatchNorm2d进行数据的归一化处理，这使得数据在进行Relu之前不会因为数据过大而导致网络性能的不稳定.
+        self.image_bn1 = nn.BatchNorm2d(32)
         self.image_conv2 = nn.Conv2d(32, 64, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1))
         self.image_bn2 = nn.BatchNorm2d(64)
         self.image_conv3 = nn.Conv2d(64, 128, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1))
@@ -49,7 +47,7 @@ class Multi_Modal_Model(nn.Module):
 
         # CNN for the bird view feature extraction
         self.bird_conv1 = nn.Conv2d(15, 32, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1))
-        self.bird_bn1 = nn.BatchNorm2d(32)  # 在卷积神经网络的卷积层之后总会添加BatchNorm2d进行数据的归一化处理，这使得数据在进行Relu之前不会因为数据过大而导致网络性能的不稳定.
+        self.bird_bn1 = nn.BatchNorm2d(32)
         self.bird_conv2 = nn.Conv2d(32, 64, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1))
         self.bird_bn2 = nn.BatchNorm2d(64)
         self.bird_conv3 = nn.Conv2d(64, 128, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1))
@@ -63,7 +61,6 @@ class Multi_Modal_Model(nn.Module):
         self.bird_fc5 = nn.Linear(linear_bird_input_size, 256)
         self.bird_out = nn.Linear(256, 512)
 
-        # DNN (Multi-Layer perceptron,MLP)
         self.dnn_fc1 = nn.Linear(1, 200)
         self.dnn_fc1.weight.data.normal_(0, 0.1)  # initialization
         self.dnn_fc2 = nn.Linear(200, 200)
@@ -71,10 +68,6 @@ class Multi_Modal_Model(nn.Module):
         self.dnn_out = nn.Linear(200, 64)
         self.dnn_out.weight.data.normal_(0, 0.1)  # initialization
 
-        # LSTM (Concat layer for the combined feature space)
-        # self.combined_fc1 = nn.Linear(704, 256)
-        # self.combined_fc2 = nn.Linear(256, 128)
-        # self.output_fc = nn.Linear(128, outputs)
         self.lstm = nn.LSTM(704, 64, 2, batch_first=True)
         self.dropout = nn.Dropout(0.1)
         self.lstm_fc = nn.Linear(64, outputs)
@@ -143,7 +136,6 @@ class DQN(object):
             -1. * self.steps_done / HyperParameter['EPS_DECAY'])
         self.steps_done += 1
         if sample > eps_threshold:
-            # print('model')
             with torch.no_grad():
                 return self.eval_net(image, bird, speed).max(1)[1].view(1, 1), self.steps_done
         else:
@@ -188,10 +180,6 @@ class DQN(object):
         action_batch = torch.cat(actions).view(1, batch_size)
         reward_batch = torch.cat(reward)
 
-        # print('action batch: ', action_batch.shape)
-        #
-        # print('evaluation size: ', self.eval_net(image_batch, bird_batch, speed_batch).shape)
-
         state_action_values = self.eval_net(image_batch, bird_batch, speed_batch).gather(1, action_batch)
 
         next_state_values = torch.zeros(HyperParameter['BATCH_SIZE'], device=device)
@@ -209,10 +197,5 @@ class DQN(object):
 
 
 if __name__ == '__main__':
-    # import torchvision
-    # from torchsummary import summary
-
     model = Multi_Modal_Model(160, 376, 300, 300, 78).to(device)
-    # vgg = torchvision.models.vgg16().to(device)
-    # summary(vgg, input_size=(3, 244, 244))
     print(model)
