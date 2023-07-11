@@ -15,5 +15,5 @@ if __name__ == "__main__":
     with open('README.md', 'w') as f:
         for a in api:
             # print(a, api[a]['API'])
-            f.writelines('### ' + api[a]['Description'] + '\n')
-            f.writelines('### ' + api[a]['API'] + '\n')
+            f.writelines('### {}. '.format(a) + api[a]['Description'] + '\n')
+            f.writelines('#### ' + api[a]['API'] + '\n')
