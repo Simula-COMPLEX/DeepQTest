@@ -12,5 +12,8 @@ def load_restful_api(filename):
 
 if __name__ == "__main__":
     api = load_restful_api('environment_configuration_apis.json')
-    for a in api:
-        print(a, api[a])
+    with open('README.md', 'w') as f:
+        for a in api:
+            # print(a, api[a]['API'])
+            f.writelines('## ' + api[a]['Description'] + '\n')
+            f.writelines('## ' + api[a]['API'] + '\n')
