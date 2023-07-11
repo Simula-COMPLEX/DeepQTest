@@ -46,6 +46,12 @@ def initialization(enable='True', simulationtime=3, date='2021-7-8', time='6:00:
     requests.post("http://127.0.0.1:5000/deepqtest/lgsvl-api/set-destination?des_x={}&des_y={}&des_z={}".format(destination[0], destination[1], destination[2]))
 ```
 
+### Configure the environment by calling REST APIs
+
+```python
+requests.post("http://127.0.0.1:5000/deepqtest/lgsvl-api/agents/pedestrian/cross-road?direction=right")
+```
+
 ## People
 
 - Chengjie Lu https://www.simula.no/people/chengjielu
