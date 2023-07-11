@@ -4,11 +4,15 @@
 
 This repository contains:
 
-1. **[deepqtest-project](https://github.com/Simula-COMPLEX/DeepQTest/tree/main/deepqtest-project)** - ;
-2. **[formal-experiment](https://github.com/Simula-COMPLEX/DeepQTest/tree/main/formal-experiment)** - ;
-3. **[rest-api](https://github.com/Simula-COMPLEX/DeepQTest/tree/main/rest-api)** - ;
- 
+1. **[deepqtest-project](https://github.com/Simula-COMPLEX/DeepQTest/tree/main/deepqtest-project)** - all related algorithms and source code for conducting the experiment;
+2. **[formal-experiment](https://github.com/Simula-COMPLEX/DeepQTest/tree/main/formal-experiment)** - all the raw data for the experiment results and analyses;
+3. **[rest-api](https://github.com/Simula-COMPLEX/DeepQTest/tree/main/rest-api)** - the list of REST API endpoints for configuring the environment.
 
+## Description
+
+Autonomous driving systems (ADSs) are safety-critical, and testing them is one of the important approaches to ensure their safety. However, due to the inherent complexity of ADSs and the high dimensionality of their operating environment, the operating environment of ADSs is dynamic, continuously evolving, and full of uncertainties, which requires a testing approach adaptive to the environment. In addition, existing ADS testing techniques have limited effectiveness in ensuring the realism of test scenarios, especially the realism of weather conditions and their changes over time. In this paper, we present DeepQTest, a novel ADS testing approach that uses Reinforcement Learning to learn environment configurations with a high chance of revealing abnormal ADS behaviors. Specifically, DeepQTest employs Deep Q-Learning and adopts three safety and comfort measures to construct the reward functions. To ensure the realism of generated scenarios, DeepQTest defines a set of realistic constraints and introduces real-world weather conditions into the simulated environment. We employed three comparison baselines, i.e., random, greedy, and a state-of-the-art RL-based approach DeepCollision, for evaluating DeepQTest on an industrial-scale ADS. Evaluation results show that DeepQTest demonstrated significantly better effectiveness in terms of generating scenarios leading to collisions and ensuring generated test scenario realism compared with the baselines.
+ 
+## DeepQTest Overview
 
 <div align=center><img src="https://github.com/Simula-COMPLEX/DeepQTest/blob/main/figures/overview.png" width="960" /></div>
 
