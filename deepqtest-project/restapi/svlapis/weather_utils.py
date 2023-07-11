@@ -21,7 +21,7 @@ def map_real_to_virtual(time_stamp, real_weather):
 
     rain_level = 0
     fog_level = 0
-    wetness_level = humidity / 200
+    wetness_level = humidity / 100
     cloudiness_level = clouds / 100
     damage_level = 0
 

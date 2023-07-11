@@ -55,7 +55,6 @@ ADDR = (HOST, PORT)
 ss = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 ss.connect(ADDR)
 
-
 NPC_QUEUE = queue.Queue(maxsize=20)
 CONE = []
 ProcessImageUtil = ProcessImage(SENSORS)
@@ -1009,13 +1008,6 @@ def get_c_probability():
     c_probability = probability
     probability = 0
     return str(c_probability)
-
-
-def update_weather():
-    while True:
-        weather = requests.get(
-            "https://history.openweathermap.org/data/2.5/history/city?id=2885679&type=hour&appid=31719ece796213f6125aa38824ad42e0").json()
-        print(weather)
 
 
 if __name__ == '__main__':
