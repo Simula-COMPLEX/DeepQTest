@@ -17,7 +17,7 @@ import socket
 import sys
 from environs import Env
 import lgsvl
-from scenariocollector.createUtils import *
+from scenariocollector.create_utils import *
 
 print("Python API Quickstart #13: NPC following waypoints")
 env = Env()

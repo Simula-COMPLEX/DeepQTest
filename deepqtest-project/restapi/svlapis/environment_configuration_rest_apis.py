@@ -27,7 +27,7 @@ from restapi.svlapis.restapi_utils import ProcessImage
 from restapi.svlapis.collision_utils import pedestrian, npc_vehicle, calculate_TTC
 from restapi.svlapis.weather_utils import map_real_to_virtual
 
-from scenariocollector.createUtils import *
+from scenariocollector.create_utils import *
 
 env = Env()
 

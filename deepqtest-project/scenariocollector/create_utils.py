@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 # @Time    : 2021/9/3 15:25
 # @Author  : Chengjie
-# @File    : createUtils.py
+# @File    : create_utils.py
 
 
 import xml.dom.minidom
@@ -21,14 +21,14 @@ def initialization(datatime='2021-7-8', timestamp='1625673600', weatherdataset='
     environment = doc.createElement('Environment')
     hdmap = doc.createElement('HDMap')
     hdmap.setAttribute('city', 'SanFrancisco')
-    realworldeffect = doc.createElement('RealWorldEffect')
-    realworldeffect.setAttribute('dateTime', datatime)
-    realworldeffect.setAttribute('unixTimeStamp', timestamp)
-    realworldeffect.setAttribute('fixTime', 'False')
+    realworldweather = doc.createElement('RealWorldEffect')
+    realworldweather.setAttribute('dateTime', datatime)
+    realworldweather.setAttribute('unixTimeStamp', timestamp)
+    realworldweather.setAttribute('fixTime', 'False')
     openweatherdatabase = doc.createElement('OpenWeatherDatabase')
     openweatherdatabase.setAttribute('filepath', weatherdataset)
     environment.appendChild(hdmap)
-    environment.appendChild(realworldeffect)
+    environment.appendChild(realworldweather)
     environment.appendChild(openweatherdatabase)
 
     root.appendChild(fileheader)
@@ -234,14 +234,3 @@ def create_story_by_timestamp(timeStamp, doc, story, entities, agents, sim):
                     story.appendChild(action)
                 break
     return ego_speed
-
-
-def create_story(doc, entities, agents):
-    story = doc.createElement('Story')
-    story.setAttribute('name', 'Default')
-    create_story_by_timestamp(0.5, story, entities, agents)
-    create_story_by_timestamp(1, story, entities, agents)
-    create_story_by_timestamp(1.5, story, entities, agents)
-    create_story_by_timestamp(2, story, entities, agents)
-    create_story_by_timestamp(2.5, story, entities, agents)
-    return story
