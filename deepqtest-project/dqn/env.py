@@ -17,7 +17,7 @@ class Env:
 
     def __init__(self):
         requests.post(
-            "http://127.0.0.1:5000/deepqtest/lgsvl-api/load-scene?scene={}&road_start={}".format('SanFrancisco', 'road1_start'))
+            "http://127.0.0.1:5000/deepqtest/lgsvl-api/load-map?map={}&road_start={}".format('SanFrancisco', 'road1_start'))
         requests.post("http://127.0.0.1:5000/deepqtest/lgsvl-api/connect-dreamview")
         requests.post("http://127.0.0.1:5000/deepqtest/lgsvl-api/enable-modules")
         print('Environment initialization finished.')

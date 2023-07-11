@@ -23,7 +23,6 @@ def map_real_to_virtual(time_stamp, real_weather):
     fog_level = 0
     wetness_level = humidity / 100
     cloudiness_level = clouds / 100
-    damage_level = 0
 
     if wea_id < 300:
         """
@@ -50,7 +49,6 @@ def map_real_to_virtual(time_stamp, real_weather):
     elif wea_id == 800:
         rain_level = 0
         fog_level = 0
-        damage_level = 0
 
     elif 800 < wea_id < 810:
         """
@@ -58,6 +56,6 @@ def map_real_to_virtual(time_stamp, real_weather):
         """
         pass
 
-    print('rain_level: {}, fog_level: {}, wetness_level: {}, cloudiness_level: {}, damage_level: {}, fixed: {}'.
-          format(rain_level, fog_level, wetness_level, cloudiness_level, damage_level, fixed))
-    return rain_level, fog_level, wetness_level, cloudiness_level, damage_level, fixed
+    print('rain_level: {}, fog_level: {}, wetness_level: {}, cloudiness_level: {}, fixed: {}'.
+          format(rain_level, fog_level, wetness_level, cloudiness_level, fixed))
+    return rain_level, fog_level, wetness_level, cloudiness_level, fixed

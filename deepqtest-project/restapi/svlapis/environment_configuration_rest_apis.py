@@ -36,7 +36,7 @@ time_step = 0.5  # time step
 SENSORS = None
 EGO = None
 DREAMVIEW = None
-CONSTRAINS = True
+CONSTRAINTS = True
 CONTROL = False
 DATETIME_UNIX = None
 WEATHER_DATA = None
@@ -216,7 +216,7 @@ def get_no_conflict_position(position, car):
     else:
         sd = 8
     generate = True
-    if CONSTRAINS:
+    if CONSTRAINTS:
         agents = sim.get_agents()
         for agent in agents:
             if math.sqrt(pow(position.x - agent.transform.position.x, 2) +
@@ -291,14 +291,14 @@ def load_city_weather():
     WEATHER_DATA = json.loads(s=content)
 
 
-@app.route(prefix + 'realistic-scenario-constrains', methods=['POST'])
-def set_constrains():
-    global CONSTRAINS
+@app.route(prefix + 'realistic-scenario-constraints', methods=['POST'])
+def set_constraints():
+    global CONSTRAINTS
     flag = str(request.args.get('enable'))
-    CONSTRAINS = (flag == 'True')
-    if CONSTRAINS:
-        print('Realistic-Scenario-Constrains module is enabled.')
-    return str(CONSTRAINS)
+    CONSTRAINTS = (flag == 'True')
+    if CONSTRAINTS:
+        print('Realistic-Scenario-Constraints module is enabled.')
+    return str(CONSTRAINTS)
 
 
 @app.route(prefix + 'set-datetime', methods=['POST'])
@@ -313,9 +313,9 @@ def set_datetime():
     return json.dumps({"datetime": str(dt)})
 
 
-@app.route(prefix + 'load-scene', methods=['POST'])
+@app.route(prefix + 'load-map', methods=['POST'])
 def load_scene():
-    scene = request.args.get('scene')
+    scene = request.args.get('map')
     road_start = request.args.get('road_start')
 
     if sim.current_scene == lgsvl.wise.DefaultAssets.map_sanfrancisco:

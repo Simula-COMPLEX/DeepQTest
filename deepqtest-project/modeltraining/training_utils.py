@@ -101,11 +101,11 @@ def step(actionID, env, action_space, experiment_stamp):
 def initialization(enable='True', simulationtime=3, date='2021-7-8', time='6:00:00', city='SanFrancisco', road_start='road1_start',
                    destination=(-300.34, 10.20, -14.54)):
 
-    requests.post("http://127.0.0.1:5000/deepqtest/lgsvl-api/realistic-scenario-constrains?enable={}".format(
+    requests.post("http://127.0.0.1:5000/deepqtest/lgsvl-api/realistic-scenario-constraints?enable={}".format(
         enable))
     requests.post(
         "http://127.0.0.1:5000/deepqtest/lgsvl-api/set-simulationtime?simulationtime={}".format(simulationtime))
-    requests.post("http://127.0.0.1:5000/deepqtest/lgsvl-api/load-scene?scene={}&road_start={}".format('SanFrancisco', road_start))
+    requests.post("http://127.0.0.1:5000/deepqtest/lgsvl-api/load-map?map={}&road_start={}".format('SanFrancisco', road_start))
     requests.post("http://127.0.0.1:5000/deepqtest/lgsvl-api/set-datetime?date={}&time={}".format(date, time))
     requests.post("http://127.0.0.1:5000/deepqtest/lgsvl-api/load-city-weather?city={}&date={}".format(city, date))
 
@@ -123,7 +123,7 @@ def reloadEnv(date='2021-7-8', time='6:00:00', road_start='road1_start', destina
     global t
     requests.post("http://127.0.0.1:5000/deepqtest/lgsvl-api/real-effect-info/"
                   "weather-episode?weather_name={}&episode={}&road_n={}".format(weather_name, str(episode), road_num))
-    requests.post("http://127.0.0.1:5000/deepqtest/lgsvl-api/load-scene?scene={}&road_start={}".format('SanFrancisco', road_start))
+    requests.post("http://127.0.0.1:5000/deepqtest/lgsvl-api/load-map?map={}&road_start={}".format('SanFrancisco', road_start))
 
     requests.post("http://127.0.0.1:5000/deepqtest/lgsvl-api/set-datetime?date={}&time={}".format(date, time))
     if t % 4 == 0:

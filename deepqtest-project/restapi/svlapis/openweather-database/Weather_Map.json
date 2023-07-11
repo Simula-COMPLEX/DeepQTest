@@ -25,6 +25,52 @@
         "Virtual_Description": "1"
     },
 
+    "701": {
+    "Main": "Mist",
+    "Real_Description": "mist",
+    "Virtual_Description": "0.2"
+    },
+    "711": {
+        "Main": "Smoke",
+        "Real_Description": "Smoke",
+        "Virtual_Description": "0.3"
+    },
+    "721": {
+        "Main": "Haze",
+        "Real_Description": "Haze",
+        "Virtual_Description": "0.4"
+    },
+    "731": {
+        "Main": "Dust",
+        "Real_Description": "sand/ dust whirls",
+        "Virtual_Description": "0.5"
+    },
+    "741": {
+        "Main": "Fog",
+        "Real_Description": "fog",
+        "Virtual_Description": "0.6"
+    },
+    "751": {
+        "Main": "Sand",
+        "Real_Description": "sand",
+        "Virtual_Description": "0.7"
+    },
+    "761": {
+        "Main": "Dust",
+        "Real_Description": "dust",
+        "Virtual_Description": "0.8"
+    },
+    "762": {
+        "Main": "Ash",
+        "Real_Description": "volcanic ash",
+        "Virtual_Description": "0.9"
+    },
+    "771": {
+        "Main": "Squall",
+        "Real_Description": "squalls",
+        "Virtual_Description": "1"
+    },
+
     "800": {
         "Main": "Clear",
         "Real_Description": "clear sky",
