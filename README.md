@@ -21,7 +21,6 @@ Autonomous driving systems (ADSs) are safety-critical, and testing them is one o
 - [SVL Simulator 2021.1](https://github.com/lgsvl/simulator/releases/tag/2021.1)
 - [Apollo 5.0](https://github.com/ApolloAuto/apollo/releases/tag/v5.0.0)
 - [SORA-SVL](https://github.com/YuqiHuai/SORA-SVL) Local cloud for SVL Simulator maintained by [Yuqi Huai](https://github.com/YuqiHuai). Unfortunately, SVL Simulator is no longer maintained by the official team, and the cloud has also been shut down by the official team.
-- [Requests](https://pypi.org/project/requests/) `pip install requests`
 
 ## People
 
