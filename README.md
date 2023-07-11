@@ -22,6 +22,13 @@ Autonomous driving systems (ADSs) are safety-critical, and testing them is one o
 - [Apollo 5.0](https://github.com/ApolloAuto/apollo/releases/tag/v5.0.0)
 - [SORA-SVL](https://github.com/YuqiHuai/SORA-SVL) Local cloud for SVL Simulator maintained by [Yuqi Huai](https://github.com/YuqiHuai). Unfortunately, SVL Simulator is no longer maintained by the official team, and the cloud has also been shut down by the official team.
 
+## Usage Example
+
+### Install the dependencies using *requirement.txt*
+```sh
+pip install -r requirements.txt
+```
+
 ## People
 
 - Chengjie Lu https://www.simula.no/people/chengjielu
