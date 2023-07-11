@@ -1,3 +1,7 @@
+## Status APIs
+
+## Environment Configuration APIs
+
 ### 1. A pedestrian is crossing the road from left to right.
 #### http://127.0.0.1:5000/deepqtest/lgsvl-api/agents/pedestrian/cross-road?direction=left
 ### 2. A pedestrian is crossing the road from right to left.
