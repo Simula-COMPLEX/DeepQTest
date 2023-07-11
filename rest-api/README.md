@@ -24,7 +24,7 @@ http://127.0.0.1:5000/deepqtest/lgsvl-api/ego/position
 http://127.0.0.1:5000/deepqtest/lgsvl-api/set-simulationtime?simulationtime={}
 
 ### 2. Load map and road.
-http://127.0.0.1:5000/deepqtest/lgsvl-api/load-scene?scene={}&road_start={}
+http://127.0.0.1:5000/deepqtest/lgsvl-api/load-map?map={}&road_start={}
 
 ### 3. Set date and time.
 http://127.0.0.1:5000/deepqtest/lgsvl-api/set-datetime?date={}&time={}
@@ -32,22 +32,19 @@ http://127.0.0.1:5000/deepqtest/lgsvl-api/set-datetime?date={}&time={}
 ### 4. Load real-world weather conditions.
 http://127.0.0.1:5000/deepqtest/lgsvl-api/load-city-weather?city={}&date={}
 
-### 5. Load real-world weather conditions.
-http://127.0.0.1:5000/deepqtest/lgsvl-api/load-city-weather?city={}&date={}
-
-### 6. Connect to Apollo.
+### 5. Connect to Apollo.
 http://127.0.0.1:5000/deepqtest/lgsvl-api/connect-dreamview
 
-### 7. Enable autonomous driving modules.
+### 6. Enable autonomous driving modules.
 http://127.0.0.1:5000/deepqtest/lgsvl-api/enable-modules
 
-### 8. Sets the destination the AVUT navigates to.
+### 7. Sets the destination the AVUT navigates to.
 http://127.0.0.1:5000/deepqtest/lgsvl-api/set-destination?des_x={}&des_y={}&des_z={}
 
-### 9. Save environment states for a rollback in greedy strategy.
+### 8. Save environment states for a rollback in greedy strategy.
 http://127.0.0.1:5000/deepqtest/lgsvl-api/savestate?ID={}
 
-### 10. Rollback the environment to a given environment state.
+### 9. Rollback the environment to a given environment state.
 http://127.0.0.1:5000/deepqtest/lgsvl-api/rollback?ID={}
 
 
