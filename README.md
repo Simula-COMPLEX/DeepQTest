@@ -16,3 +16,11 @@ Autonomous driving systems (ADSs) are safety-critical, and testing them is one o
 
 <div align=center><img src="https://github.com/Simula-COMPLEX/DeepQTest/blob/main/figures/overview.png" width="960" /></div>
 
+
+
+## People
+
+- Chengjie Lu https://www.simula.no/people/chengjielu
+- Tao Yue https://www.simula.no/people/tao
+- Man Zhang
+- Shaukat Ali https://www.simula.no/people/shaukat
