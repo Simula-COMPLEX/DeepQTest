@@ -38,7 +38,7 @@ http://127.0.0.1:5000/deepqtest/lgsvl-api/connect-dreamview
 ### 6. Enable autonomous driving modules.
 http://127.0.0.1:5000/deepqtest/lgsvl-api/enable-modules
 
-### 7. Sets the destination the AVUT navigates to.
+### 7. Set the destination the AVUT navigates to.
 http://127.0.0.1:5000/deepqtest/lgsvl-api/set-destination?des_x={}&des_y={}&des_z={}
 
 ### 8. Save environment states for a rollback in greedy strategy.
