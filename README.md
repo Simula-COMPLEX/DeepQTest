@@ -32,10 +32,9 @@ pip install -r requirements.txt
 ### Run the environment configuration API [script](https://github.com/Simula-COMPLEX/DeepQTest/blob/main/deepqtest-project/restapi/svlapis/environment_configuration_rest_apis.py), and use the following function to set up the testing environment
 
 ```python
-def initialization(enable='True', simulationtime=3, date='2021-7-8', time='6:00:00', city='SanFrancisco', road_start='road1_start',
+def initialization(enable='True', simulationtime=3, date='2021-7-8', time='8:00:00', city='SanFrancisco', road_start='road1_start',
                    destination=(-300.34, 10.20, -14.54)):
 
-    requests.post("http://127.0.0.1:5000/deepqtest/lgsvl-api/realistic-scenario-constraints?enable={}".format(enable))
     requests.post("http://127.0.0.1:5000/deepqtest/lgsvl-api/set-simulationtime?simulationtime={}".format(simulationtime))
     requests.post("http://127.0.0.1:5000/deepqtest/lgsvl-api/load-scene?scene={}&road_start={}".format('SanFrancisco', road_start))
     requests.post("http://127.0.0.1:5000/deepqtest/lgsvl-api/set-datetime?date={}&time={}".format(date, time))
