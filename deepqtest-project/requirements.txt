@@ -1,0 +1,12 @@
+requests~=2.27.1
+numpy~=1.19.5
+pandas~=1.1.5
+pillow~=8.4.0
+opencv-python~=4.6.0.66
+flask~=2.0.3
+matplotlib~=3.3.4
+pyntcloud~=0.1.5
+textdistance~=4.5.0
+ipython~=7.16.3
+traitlets~=4.3.3
+torch~1.10.2

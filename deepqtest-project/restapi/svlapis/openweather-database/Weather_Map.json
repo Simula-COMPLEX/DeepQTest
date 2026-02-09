@@ -1,0 +1,99 @@
+{
+    "500": {
+        "Main": "Rain",
+        "Real_Description": "light rain",
+        "Virtual_Description": "0.2"
+    },
+    "501": {
+        "Main": "Rain",
+        "Real_Description": "moderate rain",
+        "Virtual_Description": "0.4"
+    },
+    "502": {
+        "Main": "Rain",
+        "Real_Description": "heavy intensity rain",
+        "Virtual_Description": "0.6"
+    },
+    "503": {
+        "Main": "Rain",
+        "Real_Description": "very heavy rain",
+        "Virtual_Description": "0.8"
+    },
+    "504": {
+        "Main": "Rain",
+        "Real_Description": "extreme rain",
+        "Virtual_Description": "1"
+    },
+
+    "701": {
+    "Main": "Mist",
+    "Real_Description": "mist",
+    "Virtual_Description": "0.2"
+    },
+    "711": {
+        "Main": "Smoke",
+        "Real_Description": "Smoke",
+        "Virtual_Description": "0.3"
+    },
+    "721": {
+        "Main": "Haze",
+        "Real_Description": "Haze",
+        "Virtual_Description": "0.4"
+    },
+    "731": {
+        "Main": "Dust",
+        "Real_Description": "sand/ dust whirls",
+        "Virtual_Description": "0.5"
+    },
+    "741": {
+        "Main": "Fog",
+        "Real_Description": "fog",
+        "Virtual_Description": "0.6"
+    },
+    "751": {
+        "Main": "Sand",
+        "Real_Description": "sand",
+        "Virtual_Description": "0.7"
+    },
+    "761": {
+        "Main": "Dust",
+        "Real_Description": "dust",
+        "Virtual_Description": "0.8"
+    },
+    "762": {
+        "Main": "Ash",
+        "Real_Description": "volcanic ash",
+        "Virtual_Description": "0.9"
+    },
+    "771": {
+        "Main": "Squall",
+        "Real_Description": "squalls",
+        "Virtual_Description": "1"
+    },
+
+    "800": {
+        "Main": "Clear",
+        "Real_Description": "clear sky",
+        "Virtual_Description": "0"
+    },
+    "801": {
+        "Main": "Clouds",
+        "Real_Description": "few clouds: 11-25%",
+        "Virtual_Description": "0.25"
+    },
+    "802": {
+        "Main": "Clouds",
+        "Real_Description": "scattered clouds: 25-50%",
+        "Virtual_Description": "0.5"
+    },
+    "803": {
+        "Main": "Clouds",
+        "Real_Description": "broken clouds: 51-84%",
+        "Virtual_Description": "0.75"
+    },
+    "804": {
+        "Main": "Clouds",
+        "Real_Description": "overcast clouds: 85-100%",
+        "Virtual_Description": "1"
+    }
+}
