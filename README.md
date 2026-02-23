@@ -1,4 +1,4 @@
-# DeepQTest: Testing Autonomous Driving Systems with Reinforcement Learning and Real-world Weather Data
+# Multi-Modal Reinforcement Learning-based Testing of Autonomous Driving Systems
 
 > To facilitate reviewing our proposed approach, reviewers please refer to the corresponding data in this repository.<br/>
 
@@ -10,8 +10,8 @@ This repository contains:
 
 ## Description
 
-Autonomous driving systems (ADSs) are safety-critical, and testing them is one of the important approaches to ensure their safety. However, due to the inherent complexity of ADSs and the high dimensionality of their operating environment, the operating environment of ADSs is dynamic, continuously evolving, and full of uncertainties, which requires a testing approach adaptive to the environment. In addition, existing ADS testing techniques have limited effectiveness in ensuring the realism of test scenarios, especially the realism of weather conditions and their changes over time. In this paper, we present DeepQTest, a novel ADS testing approach that uses Reinforcement Learning to learn environment configurations with a high chance of revealing abnormal ADS behaviors. Specifically, DeepQTest employs Deep Q-Learning and adopts three safety and comfort measures to construct the reward functions. To ensure the realism of generated scenarios, DeepQTest defines a set of realistic constraints and introduces real-world weather conditions into the simulated environment. We employed three comparison baselines, i.e., random, greedy, and a state-of-the-art RL-based approach DeepCollision, for evaluating DeepQTest on an industrial-scale ADS. Evaluation results show that DeepQTest demonstrated significantly better effectiveness in terms of generating scenarios leading to collisions and ensuring generated test scenario realism compared with the baselines.
- 
+Autonomous driving systems (ADSs) make driving decisions in uncertain and dynamic environments themselves. Thus, systematic ADS testing is important to ensure the dependability of ADS. The high-dimensional environment, the virtually infinite number of possible test scenarios, and dynamic environmental conditions, including weather, which introduce additional uncertainties, make exhaustive testing infeasible and require adaptive, online testing. Existing Reinforcement Learning (RL)-based testing approaches typically rely on single-modality state representations, which cannot realistically capture the heterogeneous information in ADS environments. To this end, we present DeepQTest, an adaptive RL-based testing approach that generates critical scenarios using a multi-modal state representation and a multi-modal Q-Network for Deep Q-Learning, fusing sensor data from different sources. We evaluated DeepQTest on an industrial-scale ADS with reward functions based on a set of safety and comfort measures, and compared it with four baselines from the literature. Evaluation results show that DeepQTest demonstrated significantly better effectiveness in generating scenarios that lead to collisions and in ensuring scenario realism than the baselines.
+
 ## DeepQTest Overview
 
 <div align=center><img src="https://github.com/Simula-COMPLEX/DeepQTest/blob/main/figures/overview.png" width="960" /></div>
